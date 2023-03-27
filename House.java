@@ -22,6 +22,9 @@ public class House extends Building {
     return this.residents.size();
   }
 
+  /*
+   * 
+   */
   public void moveIn(String name) {
     // check if this.residents contains name
     if (this.residents.contains(name)) {
@@ -33,6 +36,19 @@ public class House extends Building {
     System.out.println(name + " has just moved into " + this.name + "! Go say hello :-)");
   }
 
+  /*
+   * 
+   */
+  public String moveOut(String name){
+    if (residents.contains(name)){
+      residents.remove(name);
+      return name;
+  } else{
+    throw new RuntimeException(name+" is not a resident of "+this.name);
+  }
+  /*
+   * 
+   */
   public String toString() {
     String description = super.toString();
     description += " There are currently " + this.nResidents() + " people living in this house.";
@@ -46,6 +62,9 @@ public class House extends Building {
     return description;
   }
 
+  /*
+   * 
+   */
   public static void main(String[] args) {
     House morrow = new House("Morrow", "The Quad", 4, false);
     System.out.println(morrow);
