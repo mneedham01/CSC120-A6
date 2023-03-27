@@ -42,10 +42,13 @@ public class House extends Building {
   public String moveOut(String name){
     if (residents.contains(name)){
       residents.remove(name);
+      System.out.println(name+ " has just moved out of "+this.name+".");
       return name;
   } else{
     throw new RuntimeException(name+" is not a resident of "+this.name);
   }
+}
+
   /*
    * 
    */
@@ -69,10 +72,11 @@ public class House extends Building {
     House morrow = new House("Morrow", "The Quad", 4, false);
     System.out.println(morrow);
     morrow.moveIn("Jordan");
-    morrow.moveIn("Jordan");
+    morrow.moveOut("Jordan");
     System.out.println(morrow);
     House king = new House("King", "The Quad", 3, true);
     System.out.println(king);
+
   }
 
 }
