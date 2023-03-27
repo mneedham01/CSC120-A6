@@ -1,101 +1,59 @@
 import java.util.ArrayList;
 
-/*
- * 
- */
+/* This is a stub for the House class */
 public class House extends Building {
 
   private ArrayList<String> residents;
   private boolean hasDiningRoom;
 
-  /*
-   * 
-   */
   public House(String name, String address, int nFloors, boolean hasDiningRoom) {
-    super(name, address,nFloors);
-    System.out.println("You have built a house: 🏠");
-    this.residents =new ArrayList<String>();
+    super(name, address, nFloors);
+    this.residents = new ArrayList<String>();
     this.hasDiningRoom = hasDiningRoom;
   }
 
-  /*
-   * 
-   */
-  public String toString(){
-    String description = super.toString();
-    description +=" There are currently "+this.residents.size()+ " residents in this house. This house";
-    if (this.hasDiningRoom){
-      description+= " has";
-    }else{
-      description+= "does not have ";
-    }
-    description+= " a dining room.";
+  /** Accessor for hasDiningRoom */
+  public boolean hasDiningRoom() {
+    return this.hasDiningRoom;
+  }
 
+  /** Accessor for number of residents */
+  public int nResidents() {
+    return this.residents.size();
+  }
+
+  public void moveIn(String name) {
+    // check if this.residents contains name
+    if (this.residents.contains(name)) {
+      //   if so: throw and exception
+      throw new RuntimeException(name + " is already a resident of " + this.name);
+    }
+    // if we're good to go, add to roster
+    this.residents.add(name);
+    System.out.println(name + " has just moved into " + this.name + "! Go say hello :-)");
+  }
+
+  public String toString() {
+    String description = super.toString();
+    description += " There are currently " + this.nResidents() + " people living in this house.";
+    description += " This house ";
+    if (this.hasDiningRoom) {
+      description += "has";
+    } else {
+      description += "does not have";
+    }
+    description += " an active dining room.";
     return description;
   }
 
-  /*
-   * 
-   */
-  public boolean hasDiningRoom(){
-    if (hasDiningRoom){
-      return true;
-    } else{
-      return false;
-    }
-  }
-
-  /*
-   * 
-   */
-  public int nResidents(){
-    return residents.size();
-  }
-
-  /*
-   * 
-   */
-  public void moveIn(String name){
-    if (!residents.contains(name)){
-      residents.add(name);
-    } else{
-      System.out.println("put in error here?");
-    }
-  }
-
-  /*
-   * 
-   */
-  public String moveOut(String name){
-    if (residents.contains(name)){
-      residents.remove(name);
-      return name;
-    } else{
-      System.out.println("put in error here?");
-      return name;
-    }
-  }
-
-  /*
-   * 
-   */
-  public boolean isResident(String person){
-    if (residents.contains(person)){
-      return true; 
-    } else{
-      return false;
-    }
-  }
-
-
   public static void main(String[] args) {
-    House northrop= new House("Northrop","49 Elm Street", 4, true);
-    System.out.println(northrop);
-    northrop.moveIn("Tessa");
-    System.out.println(northrop);
-    northrop.moveOut("Tessa");
-    System.out.println(northrop);
+    House morrow = new House("Morrow", "The Quad", 4, false);
+    System.out.println(morrow);
+    morrow.moveIn("Jordan");
+    morrow.moveIn("Jordan");
+    System.out.println(morrow);
+    House king = new House("King", "The Quad", 3, true);
+    System.out.println(king);
   }
 
 }
-
