@@ -19,7 +19,7 @@ public class Library extends Building{
      * 
      */
     public void addTitle(String title){
-      if(this.collection.contains(title)){
+      if(this.collection.containsKey(title)){
         throw new RuntimeException(this.name+" library already owns "+title+"."); 
       } else{
         this.collection.put(title,true);
@@ -31,7 +31,7 @@ public class Library extends Building{
      * 
      */
     public String removeTitle(String title){
-      if (!this.collection.contains(title)){
+      if (!this.collection.containsKey(title)){
         throw new RuntimeException(this.name+ " library does not own "+title+".");
       }else{
         this.collection.remove(title);
@@ -53,7 +53,7 @@ public class Library extends Building{
         }
         //the book is not avaible -> throw runtime exception 
         else{
-          throw new RuntimeException(this.name+" is already checked out.");
+          throw new RuntimeException(title+" is already checked out.");
         }
       //the library does not own the book -> throw runtime exception 
       } else{
@@ -70,7 +70,7 @@ public class Library extends Building{
         //check whether the book has been checked out 
         if (!isAvailable(title)){
           this.collection.replace(title,true);
-          System.out.println(title+" is returned.");
+          System.out.println(title+" has been returned.");
         } 
         //the book has not been checked out already -> throw runtime exception 
         else{
@@ -86,7 +86,7 @@ public class Library extends Building{
      * 
      */
     public boolean containsTitle(String title){
-      if (this.collection.contains(title)){
+      if (this.collection.containsKey(title)){
         return true;
       } else {
         return false;
@@ -112,7 +112,7 @@ public class Library extends Building{
       toPrint+=this.collection.toString();
       toPrint=toPrint.replace("true"," Available");
       toPrint=toPrint.replace("false"," Checked Out");
-      System.out.println(toPrint);
+      System.out.println(toPrint+"\n");
     }
   
     public static void main(String[] args) {
@@ -123,22 +123,29 @@ public class Library extends Building{
       neilson.addTitle("Charlotte's Web");
       //check if book is in collection 
       neilson.printCollection();
+    
       //try to add another two books 
       neilson.addTitle("Harry Potter and the Sorcerer's Stone");
       neilson.addTitle("The Lion, The Witch, and The Wardrobe");
       neilson.printCollection();
+      
       //try to add a book that has already been added (should throw a runtime exception)
       try{
         neilson.addTitle("Charlotte's Web");
       } catch (Exception e){
-        System.out.println(e);
+        System.out.println(e+"\n");
       }
       //try to remove a book 
+      neilson.printCollection();
       neilson.removeTitle("The Lion, The Witch, and The Wardrobe");
       neilson.printCollection();
       //try to remove a book that's not there (should throw a runtime exception)
-      neilson.removeTitle("Harry Potter and the Chamber of Secrets");
-
+      try{
+        neilson.removeTitle("Harry Potter and the Chamber of Secrets");
+      } catch (Exception e){
+        System.out.println(e+"\n");
+      }
+      
       //try to check out a book 
       neilson.checkOut("Charlotte's Web");
       neilson.printCollection();
@@ -146,14 +153,27 @@ public class Library extends Building{
       neilson.returnBook("Charlotte's Web");
       neilson.printCollection();
       //try to check out a book that the library doesn't own (should throw a runtime exception)
-      neilson.checkOut("Harry Potter and the Prisoner of Azkaban");
+      try{
+        neilson.checkOut("Harry Potter and the Prisoner of Azkaban");
+      } catch (Exception e){
+        System.out.println(e+"\n");
+      }
       //try to check out a book that is already checked out (should throw a runtime exception)
       neilson.checkOut("Charlotte's Web");
       neilson.printCollection();
-      neilson.checkOut("Charlotte's Web");
+      try{
+        neilson.checkOut("Charlotte's Web");
+      } catch (Exception e){
+        System.out.println(e+"\n");
+      }
       //try to return a book that's already returned (shoudl throw a runtime exception)
       neilson.returnBook("Charlotte's Web");
-      neilson.returnBook("Charlotte's Web");
+      try{
+        neilson.returnBook("Charlotte's Web");
+      } catch (Exception e){
+        System.out.println(e+"\n");
+      }
+      
       //check whether it returns containsTitle if the library owns the book 
       System.out.println("According to containsTitle, the fact that it owns Charlotte's Web is: "+neilson.containsTitle("Charlotte's Web"));
   
