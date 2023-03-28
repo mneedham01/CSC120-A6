@@ -44,14 +44,30 @@ public class Library extends Building{
      * 
      */
     public void checkOut(String title){
-      this.collection.replace(title, false);
+      if (containsTitle(title)){
+        this.collection.replace(title, false);
+      } else{
+        throw new RuntimeException(this.name+" doesn't own "+title);
+      }
     }
 
     /*
      * 
      */
     public void returnBook(String title){
-      this.collection.replace(title,true);
+      if (containsTitle(title)){
+        this.collection.replace(title,true);
+      } else{
+        throw new RuntimeException(this.name+" doesn't own "+title);
+      }
+    }
+
+    public boolean containsTitle(String title){
+      if (this.collection.contains(title)){
+        return true;
+      } else {
+        return false;
+      }
     }
 
   
