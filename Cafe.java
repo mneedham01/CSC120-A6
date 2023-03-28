@@ -43,6 +43,7 @@ public class Cafe extends Building{
         this.nSugarPackets -= nSugarPackets;
         this.nCreams -= nCreams;
         this.nCups -=1; 
+        System.out.println("Cup of coffee sold.");
     }
 
     /*
@@ -55,8 +56,21 @@ public class Cafe extends Building{
         this.nCups += nCups;
     }
     
+    public String toString(){
+        String toReturn= this.name + " Cafe is a " + this.nFloors + "-story building located at " + this.address+"\n";
+        toReturn+="Currently there are "+this.nCoffeeOunces+" ounces of coffee in stock. \n";
+        toReturn+="Currently there are "+this.nSugarPackets+" packets of sugar in stock. \n";
+        toReturn+="Currently there are "+this.nCreams+" creams in stock. \n";
+        toReturn+="Currently there are "+this.nCups+" cups in stock. \n";
+        return toReturn;
+    }
     public static void main(String[] args) {
-    
+        Cafe compass= new Cafe("Compass","7 Neilson Drive",1);
+        //try to sell coffee & get it to run out 
+        for (int i = 0; i < 10; i++) {
+            compass.sellCoffee(12,2,2);
+            System.out.println(compass);
+          } 
     }
     
 }
