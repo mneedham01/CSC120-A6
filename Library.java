@@ -44,14 +44,18 @@ public class Library extends Building{
      * 
      */
     public void checkOut(String title){
+      //check whether the library owns the book 
       if (containsTitle(title)){
+        //check whether the book is available 
         if (isAvailable(title)){
           this.collection.replace(title, false);
           System.out.println(title+" is checked out.");
         }
+        //the book is not avaible -> throw runtime exception 
         else{
           throw new RuntimeException(this.name+" is already checked out.");
         }
+      //the library does not own the book -> throw runtime exception 
       } else{
         throw new RuntimeException(this.name+" doesn't own "+title);
       }
@@ -61,13 +65,18 @@ public class Library extends Building{
      * 
      */
     public void returnBook(String title){
+      //check whether the library owns the book 
       if (containsTitle(title)){
+        //check whether the book has been checked out 
         if (!isAvailable(title)){
           this.collection.replace(title,true);
           System.out.println(title+" is returned.");
-        } else{
+        } 
+        //the book has not been checked out already -> throw runtime exception 
+        else{
           throw new RuntimeException(title+" has not been checked out.");
         }
+      //the library does not own the book -> throw runtime exception 
       } else{
         throw new RuntimeException(this.name+" doesn't own "+title);
       }
@@ -101,24 +110,53 @@ public class Library extends Building{
     public void printCollection(){
       String toPrint="";
       toPrint+=this.collection.toString();
-      toPrint.replace("true","Available");
-      toPrint.replace("false","Checked Out");
+      toPrint=toPrint.replace("true"," Available");
+      toPrint=toPrint.replace("false"," Checked Out");
+      System.out.println(toPrint);
     }
   
     public static void main(String[] args) {
       //create a library 
       Library neilson= new Library("Neilson", "7 Neilson Drive", 4);
-      //add a book 
+
+      //try to add a book 
       neilson.addTitle("Charlotte's Web");
-      //check book is in collection 
+      //check if book is in collection 
       neilson.printCollection();
-      //add another book 
+      //try to add another two books 
       neilson.addTitle("Harry Potter and the Sorcerer's Stone");
+      neilson.addTitle("The Lion, The Witch, and The Wardrobe");
       neilson.printCollection();
+      //try to add a book that has already been added (should throw a runtime exception)
+      try{
+        neilson.addTitle("Charlotte's Web");
+      } catch (Exception e){
+        System.out.println(e);
+      }
+      //try to remove a book 
+      neilson.removeTitle("The Lion, The Witch, and The Wardrobe");
+      neilson.printCollection();
+      //try to remove a book that's not there (should throw a runtime exception)
+      neilson.removeTitle("Harry Potter and the Chamber of Secrets");
+
       //try to check out a book 
       neilson.checkOut("Charlotte's Web");
       neilson.printCollection();
+      //try to return a book 
       neilson.returnBook("Charlotte's Web");
+      neilson.printCollection();
+      //try to check out a book that the library doesn't own (should throw a runtime exception)
+      neilson.checkOut("Harry Potter and the Prisoner of Azkaban");
+      //try to check out a book that is already checked out (should throw a runtime exception)
+      neilson.checkOut("Charlotte's Web");
+      neilson.printCollection();
+      neilson.checkOut("Charlotte's Web");
+      //try to return a book that's already returned (shoudl throw a runtime exception)
+      neilson.returnBook("Charlotte's Web");
+      neilson.returnBook("Charlotte's Web");
+      //check whether it returns containsTitle if the library owns the book 
+      System.out.println("According to containsTitle, the fact that it owns Charlotte's Web is: "+neilson.containsTitle("Charlotte's Web"));
+  
 
 
       
