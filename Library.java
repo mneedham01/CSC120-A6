@@ -45,7 +45,13 @@ public class Library extends Building{
      */
     public void checkOut(String title){
       if (containsTitle(title)){
-        this.collection.replace(title, false);
+        if (isAvailable(title)){
+          this.collection.replace(title, false);
+          System.out.println(title+" is checked out.");
+        }
+        else{
+          throw new RuntimeException(this.name+" is already checked out.");
+        }
       } else{
         throw new RuntimeException(this.name+" doesn't own "+title);
       }
@@ -56,7 +62,12 @@ public class Library extends Building{
      */
     public void returnBook(String title){
       if (containsTitle(title)){
-        this.collection.replace(title,true);
+        if (!isAvailable(title)){
+          this.collection.replace(title,true);
+          System.out.println(title+" is returned.");
+        } else{
+          throw new RuntimeException(title+" has not been checked out.");
+        }
       } else{
         throw new RuntimeException(this.name+" doesn't own "+title);
       }
@@ -95,8 +106,21 @@ public class Library extends Building{
     }
   
     public static void main(String[] args) {
+      //create a library 
       Library neilson= new Library("Neilson", "7 Neilson Drive", 4);
+      //add a book 
       neilson.addTitle("Charlotte's Web");
+      //check book is in collection 
+      neilson.printCollection();
+      //add another book 
+      neilson.addTitle("Harry Potter and the Sorcerer's Stone");
+      neilson.printCollection();
+      //try to check out a book 
+      neilson.checkOut("Charlotte's Web");
+      neilson.printCollection();
+      neilson.returnBook("Charlotte's Web");
+
+
       
     }
   
