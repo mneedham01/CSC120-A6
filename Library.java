@@ -83,6 +83,16 @@ public class Library extends Building{
         return false;
       }
     }
+
+    /*
+     * 
+     */
+    public void printCollection(){
+      String toPrint="";
+      toPrint+=this.collection.toString();
+      toPrint.replace("true","Available");
+      toPrint.replace("false","Checked Out");
+    }
   
     public static void main(String[] args) {
       Library neilson= new Library("Neilson", "7 Neilson Drive", 4);
