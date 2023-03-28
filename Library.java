@@ -62,6 +62,9 @@ public class Library extends Building{
       }
     }
 
+    /*
+     * 
+     */
     public boolean containsTitle(String title){
       if (this.collection.contains(title)){
         return true;
@@ -70,6 +73,16 @@ public class Library extends Building{
       }
     }
 
+    /*
+     * 
+     */
+    public boolean isAvailable(String title){
+      if(this.collection.get(title)){
+        return true;
+      }else{
+        return false;
+      }
+    }
   
     public static void main(String[] args) {
       Library neilson= new Library("Neilson", "7 Neilson Drive", 4);
