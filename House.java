@@ -56,7 +56,9 @@ public class House extends Building {
   }
 }
 
-  /** Converts House to string  */
+  /** Converts House to string  
+   * returns: String
+  */
   public String toString() {
     String description = super.toString();
     description += " There are currently " + this.nResidents() + " people living in this house.";

@@ -8,15 +8,17 @@ public class Library extends Building{
 
     /*
      * Library constructor 
-     * @param: 
+     * @param: name, address, number of floors 
+     * @returns: Library 
      */
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
       this.collection = new Hashtable<String,Boolean>(); 
     }
 
-    /*
-     * 
+    /** 
+     * Method to add a book to library 
+     * @param: book title 
      */
     public void addTitle(String title){
       if(this.collection.containsKey(title)){
@@ -28,7 +30,8 @@ public class Library extends Building{
     }
 
     /*
-     * 
+     * Method to remove title from library 
+     * @param: Book title
      */
     public String removeTitle(String title){
       if (!this.collection.containsKey(title)){
@@ -41,7 +44,8 @@ public class Library extends Building{
     }
 
     /*
-     * 
+     * Method to check out book if the library owns it and if it is available. 
+     * @param: Book title 
      */
     public void checkOut(String title){
       //check whether the library owns the book 
@@ -62,7 +66,8 @@ public class Library extends Building{
     }
 
     /*
-     * 
+     * Method to return book if the library owns it and it has been checked out. 
+     * @param: Book title 
      */
     public void returnBook(String title){
       //check whether the library owns the book 
@@ -83,7 +88,9 @@ public class Library extends Building{
     }
 
     /*
-     * 
+     * Checks whether library owns a book 
+     * @param: Book title 
+     * @returns: T/F 
      */
     public boolean containsTitle(String title){
       if (this.collection.containsKey(title)){
@@ -94,7 +101,9 @@ public class Library extends Building{
     }
 
     /*
-     * 
+     * Checks whether a booked is available 
+     * @param: Book title
+     * @returns: T/F
      */
     public boolean isAvailable(String title){
       if(this.collection.get(title)){
@@ -104,9 +113,7 @@ public class Library extends Building{
       }
     }
 
-    /*
-     * 
-     */
+    /** Prints collection */
     public void printCollection(){
       String toPrint="";
       toPrint+=this.collection.toString();
