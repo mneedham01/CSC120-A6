@@ -1,11 +1,18 @@
 import java.util.ArrayList;
 
-/* This is a stub for the House class */
+/*
+ * House class has a constructor; accessorsl; and moveIn, moveOut, and toString methods. 
+ */
 public class House extends Building {
 
   private ArrayList<String> residents;
   private boolean hasDiningRoom;
 
+  /*
+   * House constructor 
+   * @param: String name, String address, int nFloors, boolean hasDining Room 
+   * @returns: House 
+   */
   public House(String name, String address, int nFloors, boolean hasDiningRoom) {
     super(name, address, nFloors);
     this.residents = new ArrayList<String>();
@@ -22,9 +29,9 @@ public class House extends Building {
     return this.residents.size();
   }
 
-  /*
-   * 
-   */
+  /** Method to add resident to House if they are not already 
+   * @param: name 
+  */
   public void moveIn(String name) {
     // check if this.residents contains name
     if (this.residents.contains(name)) {
@@ -36,8 +43,8 @@ public class House extends Building {
     System.out.println(name + " has just moved into " + this.name + "! Go say hello :-)");
   }
 
-  /*
-   * 
+  /** Method to remove resident from House if they are a resident
+   * @param: name 
    */
   public String moveOut(String name){
     if (residents.contains(name)){
@@ -49,9 +56,7 @@ public class House extends Building {
   }
 }
 
-  /*
-   * 
-   */
+  /** Converts House to string  */
   public String toString() {
     String description = super.toString();
     description += " There are currently " + this.nResidents() + " people living in this house.";
@@ -65,9 +70,7 @@ public class House extends Building {
     return description;
   }
 
-  /*
-   * 
-   */
+  
   public static void main(String[] args) {
     House morrow = new House("Morrow", "The Quad", 4, false);
     System.out.println(morrow);
