@@ -120,56 +120,56 @@ public class Library extends Building{
       Library neilson= new Library("Neilson", "7 Neilson Drive", 4);
 
       //try to add a book 
-      neilson.addTitle("Charlotte's Web");
+      neilson.addTitle("Charlotte's Web by E.B. White");
       //check if book is in collection 
       neilson.printCollection();
     
       //try to add another two books 
-      neilson.addTitle("Harry Potter and the Sorcerer's Stone");
-      neilson.addTitle("The Lion, The Witch, and The Wardrobe");
+      neilson.addTitle("Harry Potter and the Sorcerer's Stone by J.K. Rowling");
+      neilson.addTitle("The Lion, The Witch, and The Wardrobe by C.S. Lewis");
       neilson.printCollection();
       
       //try to add a book that has already been added (should throw a runtime exception)
       try{
-        neilson.addTitle("Charlotte's Web");
+        neilson.addTitle("Charlotte's Web by E.B. White");
       } catch (Exception e){
         System.out.println(e+"\n");
       }
       //try to remove a book 
       neilson.printCollection();
-      neilson.removeTitle("The Lion, The Witch, and The Wardrobe");
+      neilson.removeTitle("The Lion, The Witch, and The Wardrobe by C.S. Lewis");
       neilson.printCollection();
       //try to remove a book that's not there (should throw a runtime exception)
       try{
-        neilson.removeTitle("Harry Potter and the Chamber of Secrets");
+        neilson.removeTitle("Harry Potter and the Chamber of Secrets by J.K. Rowling");
       } catch (Exception e){
         System.out.println(e+"\n");
       }
       
       //try to check out a book 
-      neilson.checkOut("Charlotte's Web");
+      neilson.checkOut("Charlotte's Web by E.B. White");
       neilson.printCollection();
       //try to return a book 
-      neilson.returnBook("Charlotte's Web");
+      neilson.returnBook("Charlotte's Web by E.B. White");
       neilson.printCollection();
       //try to check out a book that the library doesn't own (should throw a runtime exception)
       try{
-        neilson.checkOut("Harry Potter and the Prisoner of Azkaban");
+        neilson.checkOut("Harry Potter and the Prisoner of Azkaban by J.K. Rowling");
       } catch (Exception e){
         System.out.println(e+"\n");
       }
       //try to check out a book that is already checked out (should throw a runtime exception)
-      neilson.checkOut("Charlotte's Web");
+      neilson.checkOut("Charlotte's Web by E.B. White");
       neilson.printCollection();
       try{
-        neilson.checkOut("Charlotte's Web");
+        neilson.checkOut("Charlotte's Web by E.B. White");
       } catch (Exception e){
         System.out.println(e+"\n");
       }
       //try to return a book that's already returned (shoudl throw a runtime exception)
-      neilson.returnBook("Charlotte's Web");
+      neilson.returnBook("Charlotte's Web by E.B. White");
       try{
-        neilson.returnBook("Charlotte's Web");
+        neilson.returnBook("Charlotte's Web by E.B. White");
       } catch (Exception e){
         System.out.println(e+"\n");
       }
