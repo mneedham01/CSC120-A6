@@ -1,14 +1,14 @@
 import java.util.Hashtable;
 
-/*
- * 
+/** Library class has a constructor, ability to add and remove books, check and return books, check if book is available/owned, and print out collection. 
  */
 public class Library extends Building{
 
     private Hashtable <String, Boolean> collection;
 
     /*
-     * 
+     * Library constructor 
+     * @param: 
      */
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
