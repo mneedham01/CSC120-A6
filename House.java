@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /*
- * House class has a constructor; accessorsl; and moveIn, moveOut, and toString methods. 
+ * House class has a constructor; accessors; and moveIn, moveOut, and toString methods. 
  */
 public class House extends Building {
 
