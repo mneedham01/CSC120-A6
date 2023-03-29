@@ -34,7 +34,7 @@ public class House extends Building {
   */
   public void moveIn(String name) {
     // check if this.residents contains name
-    if (this.residents.contains(name)) {
+    if (this.isResident(name)) {
       //   if so: throw and exception
       throw new RuntimeException(name + " is already a resident of " + this.name);
     }
@@ -47,7 +47,7 @@ public class House extends Building {
    * @param: name 
    */
   public String moveOut(String name){
-    if (residents.contains(name)){
+    if (this.isResident(name)){
       residents.remove(name);
       System.out.println(name+ " has just moved out of "+this.name+".");
       return name;
@@ -55,6 +55,19 @@ public class House extends Building {
     throw new RuntimeException(name+" is not a resident of "+this.name);
   }
 }
+ /*
+  * Method to check if a person is a resident
+  * @param: person 
+  * @returns: T/F
+  */
+  public boolean isResident(String person){
+    if (residents.contains(person)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
   /** Converts House to string  
    * returns: String
