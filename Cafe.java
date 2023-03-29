@@ -1,6 +1,4 @@
-/* 
- * 
- */
+/** Cafe class has a constructor, method to sell coffee, method to restock, and method to print information. */
 public class Cafe extends Building{
     private int nCoffeeOunces;
     private int nSugarPackets;
@@ -8,7 +6,9 @@ public class Cafe extends Building{
     private int nCups;
 
     /*
-     * 
+     * Constructor for Cafe class
+     * @param: name, address, number of floor 
+     * @returns: Cafe 
      */
     public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors);
@@ -19,7 +19,8 @@ public class Cafe extends Building{
     }
 
     /*
-     * 
+     * Method to sell coffee; restocks if necessary, decreases stock  
+     * @param: size of coffee, number of sugar packets, number of creams 
      */
     private void sellCoffee(int size, int nSugarPackets, int nCreams){
         if (this.nCoffeeOunces<size){
@@ -47,7 +48,8 @@ public class Cafe extends Building{
     }
 
     /*
-     * 
+     * Method to restock  
+     * @param: number of coffee ounces, number of sugar packets, number of creams, number of cups 
      */
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
         this.nCoffeeOunces += nCoffeeOunces;
@@ -56,6 +58,7 @@ public class Cafe extends Building{
         this.nCups += nCups;
     }
     
+    /** Method to print out information and current stock levels in the cafe.  */
     public String toString(){
         String toReturn= this.name + " Cafe is a " + this.nFloors + "-story building located at " + this.address+"\n";
         toReturn+="Currently there are "+this.nCoffeeOunces+" ounces of coffee in stock. \n";
